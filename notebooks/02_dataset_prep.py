@@ -52,7 +52,7 @@ def build_dataset():
                 if src.exists():
                     shutil.copy(src, dest / img_name)
 
-    print("\n✅ Dataset organizado:")
+    print("\n Dataset organizado:")
     for split in ["train", "val", "test"]:
         for cls in df["class"].unique():
             n = len(list((OUTPUT_DIR / split / cls).glob("*.jpg")))

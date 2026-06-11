@@ -98,7 +98,7 @@ for epoch in range(1, EPOCHS + 1):
     if val_acc > best_val_acc:
         best_val_acc = val_acc
         torch.save(model.state_dict(), "models/best_model.pt")
-        print(f"  ✅ Melhor modelo salvo (val_acc={val_acc:.3f})")
+        print(f"   Melhor modelo salvo (val_acc={val_acc:.3f})")
 
 # --- Exportação ONNX ---
 model.load_state_dict(torch.load("models/best_model.pt"))
@@ -111,10 +111,10 @@ torch.onnx.export(
     dynamic_axes={"image": {0: "batch_size"}},
     opset_version=17,
 )
-print(f"✅ Modelo exportado: {MODEL_OUT} ({MODEL_OUT.stat().st_size / 1e6:.1f} MB)")
+print(f" Modelo exportado: {MODEL_OUT} ({MODEL_OUT.stat().st_size / 1e6:.1f} MB)")
 
 # Salva mapeamento de classes
 with open("models/classes.json", "w") as f:
     json.dump(train_ds.classes, f)
-print("✅ Classes salvas em models/classes.json")
+print(" Classes salvas em models/classes.json")
 
